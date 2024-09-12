@@ -1,0 +1,44 @@
+fun main (){
+    class Estudantes(val nome:String, val idade: Int, val altura:Double, val estudante: Boolean)
+
+    val Estudante1 = Estudantes("João",19,1.81,true)
+    val Estudante2 = Estudantes("Vanussa",36,1.75,false)
+
+    fun somaidade(): Int{
+        return Estudante1.idade + Estudante2.idade
+    }
+
+    fun FatAltura1(): Double {
+        return Estudante1.altura * 2
+    }
+    fun FatAltura2(): Double {
+        return Estudante2.altura * 2
+    }
+
+    fun Ola(): String{
+        return ("Ola, ${Estudante1.nome} e ${Estudante2.nome}")
+    }
+    println(Ola())
+    println("-------------------------------")
+    println("Ola, ${Estudante1.nome}")
+    println("Você tem ${Estudante1.idade}")
+    println("Você tem ${Estudante1.altura}m")
+    if (Estudante1.estudante) {
+        println("Você é estudante!")
+    }else{
+        println("Você não é estudante!")
+        }
+    println("-------------------------------")
+    println("Ola, ${Estudante2.nome}")
+    println("Você tem ${Estudante2.idade}")
+    println("Você tem ${Estudante2.altura}m")
+    if (Estudante2.estudante) {
+        println("Você é estudante!")
+    }else{
+        println("Você não é estudante!")
+    }
+    println("${Estudante1.nome} e ${Estudante2.nome} juntos, tem ${somaidade()} anos.")
+    println("A altura de ${Estudante1.nome} fatorada é ${FatAltura1()}")
+    println("A altura de ${Estudante2.nome} fatorada é ${FatAltura2()}")
+    
+}
