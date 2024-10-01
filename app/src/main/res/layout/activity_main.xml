@@ -4,60 +4,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/background_gradient"> <!-- Fundo em gradiente -->
 
-    <!-- Campo para inserir o nome do aluno -->
-
+    <!-- Campo para inserir o número de homens -->
     <EditText
-        android:id="@+id/editTextNomeAluno"
+        android:id="@+id/et_homens"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome Aluno" />
+        android:hint="Número de Homens"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
 
-    <!-- Campo para inserir a área de escolha -->
-
-    <!-- Botão para adicionar à lista -->
-
-    <!-- RecyclerView para listar os alunos -->
-
-    <LinearLayout
+    <!-- Campo para inserir o número de mulheres -->
+    <EditText
+        android:id="@+id/et_mulheres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:hint="Número de Mulheres"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
 
-        <EditText
-            android:id="@+id/editTextAreaEscolha"
-            android:layout_width="249dp"
-            android:layout_height="wrap_content"
-            android:hint="Área de Escolha" />
-
-        <Button
-            android:id="@+id/buttonInserir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inserir" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewAlunos"
+    <!-- Campo para inserir o número de crianças -->
+    <EditText
+        android:id="@+id/et_criancas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:hint="Número de Crianças"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
 
-    <!-- TextView para exibir a quantidade de alunos -->
-    <TextView
-        android:id="@+id/textViewQuantidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0 Alunos"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
-    <!-- Botão para zerar a lista -->
+    <!-- Botão para calcular -->
     <Button
-        android:id="@+id/buttonZerar"
+        android:id="@+id/btn_calcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ZERAR"
-        android:layout_marginTop="16dp" />
+        android:text="Calcular"
+        style="@style/RedButton" /> <!-- Estilo de botão -->
+
+    <!-- Botão para zerar -->
+    <Button
+        android:id="@+id/btn_limpar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zerar"
+        style="@style/RedButton"
+        android:layout_marginTop="8dp" /> <!-- Margem superior para espaçamento -->
+
+    <!-- TextView para exibir os resultados -->
+    <TextView
+        android:id="@+id/tv_resultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FF0000" /> <!-- Texto em vermelho -->
+
+    <!-- RecyclerView para exibir a lista de resultados -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+    android:padding="8dp" />
 </LinearLayout>
