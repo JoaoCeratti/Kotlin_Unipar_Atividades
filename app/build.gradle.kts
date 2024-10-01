@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.verdejar"
+    namespace = "com.example.taffebank"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.verdejar"
+        applicationId = "com.example.taffebank"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

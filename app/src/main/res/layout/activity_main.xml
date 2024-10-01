@@ -31,7 +31,6 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Adicionar nova planta"
                     android:textColor="#070606" />
 
@@ -39,11 +38,8 @@
                     android:id="@+id/AddPlanta"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
-                    android:filterTouchesWhenObscured="true"
                     android:inputType="text"
-                    android:text="add planta"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
 
@@ -51,7 +47,6 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Data de plantio"
                     android:textColor="#000000" />
 
@@ -59,30 +54,22 @@
                     android:id="@+id/DataPlanta"
                     android:layout_width="151dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
-                    android:filterTouchesWhenObscured="true"
-                    android:inputType="date"
-                    android:text="data planta" />
+                    android:inputType="date" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nivel de cuidado"
+                    android:text="Nível de cuidado"
                     android:textColor="#000000" />
 
                 <EditText
                     android:id="@+id/NivelPlanta"
                     android:layout_width="152dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
-                    android:filterTouchesWhenObscured="true"
-                    android:inputType="date"
-                    android:text="nivel planta" />
-
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,20 +83,10 @@
                     android:id="@+id/BtnAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Adicionar Planta" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPlanta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            android:background="#FFFFFF" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
