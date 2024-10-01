@@ -1,101 +1,71 @@
 package com.example.adaptersystem
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adaptersystem.R
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var resultadosAdapter: ResultadosAdapter
-    private val resultados = mutableListOf<String>() // Lista de resultados
+    private lateinit var textViewQuantidade: TextView
+    private var listaAlunos = mutableListOf<Aluno>()
+    private lateinit var alunoAdapter: AlunoAdapter // Declare o adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val editNumeroDeHomens = findViewById<EditText>(R.id.et_homens)
-        val editNumeroDeMulheres = findViewById<EditText>(R.id.et_mulheres)
-        val editNumeroDeCriancas = findViewById<EditText>(R.id.et_criancas)
-        val buttonCalculo = findViewById<Button>(R.id.btn_calcular)
-        val buttonZerar = findViewById<Button>(R.id.btn_limpar)
+        val editTextNomeAluno = findViewById<EditText>(R.id.editTextNomeAluno)
+        val editTextAreaEscolha = findViewById<EditText>(R.id.editTextAreaEscolha)
+        val buttonInserir = findViewById<Button>(R.id.buttonInserir)
+        val buttonZerar = findViewById<Button>(R.id.buttonZerar)
+        textViewQuantidade = findViewById(R.id.textViewQuantidade)
+        recyclerView = findViewById(R.id.recyclerViewAlunos)
 
-        // Inicializando RecyclerView
-        recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        resultadosAdapter = ResultadosAdapter(resultados)
-        recyclerView.adapter = resultadosAdapter
+
+        // Inicialize o adapter e defina para o RecyclerView
+        alunoAdapter = AlunoAdapter(listaAlunos)
+        recyclerView.adapter = alunoAdapter
 
         // Adicionar aluno à lista
-        buttonCalculo.setOnClickListener {
-            val homenst = editNumeroDeHomens.text.toString()
-            val mulherest = editNumeroDeMulheres.text.toString()
-            val criancast = editNumeroDeCriancas.text.toString()
+        buttonInserir.setOnClickListener {
+            val nome = editTextNomeAluno.text.toString()
+            val areaEscolha = editTextAreaEscolha.text.toString()
+            val dataAtual = getCurrentDate()
 
-            if (homenst.isEmpty() && mulherest.isEmpty() && criancast.isEmpty()) {
-                showToast("Por favor, preencha pelo menos um campo.")
-            } else {
-                calcularParticipantes(homenst, mulherest, criancast)
+            if (nome.isNotEmpty() && areaEscolha.isNotEmpty()) {
+                listaAlunos.add(Aluno(nome, areaEscolha, dataAtual))
+                atualizarQuantidadeAlunos()
+                alunoAdapter.notifyItemInserted(listaAlunos.size - 1) // Notifica a inserção do novo item
+                editTextNomeAluno.text.clear()
+                editTextAreaEscolha.text.clear()
             }
         }
 
         // Zerar lista
         buttonZerar.setOnClickListener {
-            clearInputs()
+            listaAlunos.clear()
+            alunoAdapter.notifyDataSetChanged() // Notifica que a lista foi atualizada
+            atualizarQuantidadeAlunos()
         }
     }
 
-    private fun calcularParticipantes(homenst: String, mulherest: String, criancast: String) {
-        val bonusPercent = 0.1f
-
-        val homens = homenst.toFloatOrNull() ?: 0f
-        val mulheres = mulherest.toFloatOrNull() ?: 0f
-        val criancas = criancast.toFloatOrNull() ?: 0f
-
-        val carneTotal = (homens * 400 + homens * 400 * bonusPercent) +
-                (mulheres * 300 + mulheres * 300 * bonusPercent) +
-                (criancas * 200 + criancas * 200 * bonusPercent)
-
-        val aperitivoTotal = (homens * 150 + homens * 150 * bonusPercent) +
-                (mulheres * 100 + mulheres * 100 * bonusPercent) +
-                (criancas * 50 + criancas * 50 * bonusPercent)
-
-        val alcoolTotal = (homens * 4 + homens * 4 * bonusPercent) +
-                (mulheres * 2 + mulheres * 2 * bonusPercent)
-
-        val aguaTotal = (criancas + mulheres) * 2 + (criancas + mulheres) * 2 * bonusPercent
-        val refriTotal = (criancas + mulheres) * 2 + (criancas + mulheres) * 2 * bonusPercent
-
-        val bebidasTotal = alcoolTotal + aguaTotal + refriTotal
-
-        resultados.clear() // Limpa a lista antes de adicionar novos resultados
-        resultados.add("Total de Carne: ${carneTotal}g")
-        resultados.add("Total de Aperitivos: ${aperitivoTotal}g")
-        resultados.add("Total de Bebidas Alcoólicas: ${alcoolTotal}L")
-        resultados.add("Total de Água: ${aguaTotal}L")
-        resultados.add("Total de Refrigerante: ${refriTotal}L")
-        resultados.add("Total de Bebidas: ${bebidasTotal}L")
-
-        // Notifica o adapter que a lista foi atualizada
-        resultadosAdapter.notifyDataSetChanged()
+    // Atualizar a quantidade de alunos exibida
+    private fun atualizarQuantidadeAlunos() {
+        textViewQuantidade.text = "${listaAlunos.size} Alunos"
     }
 
-    private fun clearInputs() {
-        findViewById<EditText>(R.id.et_homens).setText("")
-        findViewById<EditText>(R.id.et_mulheres).setText("")
-        findViewById<EditText>(R.id.et_criancas).setText("")
-        resultados.clear() // Limpa a lista de resultados
-        resultadosAdapter.notifyDataSetChanged() // Atualiza o adapter
-    }
-
-    private fun showToast(message: String) {
-        // Aqui você pode usar um Toast para mostrar a mensagem de erro
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    // Função para obter a data atual
+    private fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat("dd/MM", Locale.getDefault())
+        return sdf.format(Date())
     }
 }

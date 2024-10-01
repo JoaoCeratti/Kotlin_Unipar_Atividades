@@ -5,68 +5,67 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/background_gradient"> <!-- Fundo em gradiente -->
+    android:background="#FFFFFF"> <!-- Fundo branco -->
 
-    <!-- Campo para inserir o número de homens -->
+    <!-- Campo para inserir o nome do aluno -->
     <EditText
-        android:id="@+id/et_homens"
+        android:id="@+id/editTextNomeAluno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Número de Homens"
+        android:hint="Nome Aluno"
         android:textColor="#000000"
-        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
+        android:backgroundTint="#FF0000" /> <!-- Borda vermelha -->
 
-    <!-- Campo para inserir o número de mulheres -->
-    <EditText
-        android:id="@+id/et_mulheres"
+    <!-- Campo para inserir a área de escolha -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Número de Mulheres"
-        android:textColor="#000000"
-        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <!-- Campo para inserir o número de crianças -->
-    <EditText
-        android:id="@+id/et_criancas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Número de Crianças"
-        android:textColor="#000000"
-        android:background="@drawable/edittext_background" /> <!-- Borda estilizada -->
+        <EditText
+            android:id="@+id/editTextAreaEscolha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Área de Escolha"
+            android:textColor="#000000"
+            android:backgroundTint="#FF0000" /> <!-- Borda vermelha -->
 
-    <!-- Botão para calcular -->
-    <Button
-        android:id="@+id/btn_calcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calcular"
-        style="@style/RedButton" /> <!-- Estilo de botão -->
+        <Button
+            android:id="@+id/buttonInserir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Inserir"
+            android:backgroundTint="#FF0000"
+        android:textColor="#FFFFFF" /> <!-- Texto branco -->
+    </LinearLayout>
 
-    <!-- Botão para zerar -->
-    <Button
-        android:id="@+id/btn_limpar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zerar"
-        style="@style/RedButton"
-        android:layout_marginTop="8dp" /> <!-- Margem superior para espaçamento -->
-
-    <!-- TextView para exibir os resultados -->
-    <TextView
-        android:id="@+id/tv_resultados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#FF0000" /> <!-- Texto em vermelho -->
-
-    <!-- RecyclerView para exibir a lista de resultados -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerViewAlunos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-    android:padding="8dp" />
+        android:background="#F5F5F5" /> <!-- Leve fundo cinza para o RecyclerView -->
+
+    <!-- TextView para exibir a quantidade de alunos -->
+    <TextView
+        android:id="@+id/textViewQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 Alunos"
+        android:textStyle="bold"
+        android:textColor="#FF0000"
+    android:layout_marginTop="16dp" />
+
+    <!-- Botão para zerar a lista -->
+    <Button
+        android:id="@+id/buttonZerar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ZERAR"
+        android:backgroundTint="#FF0000"
+    android:textColor="#FFFFFF"
+    android:layout_marginTop="16dp" />
 </LinearLayout>
