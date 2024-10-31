@@ -10,7 +10,7 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
     companion object {
         private const val DATABASE_NAME = "COMPRAS_UNIPAR.db"
-        private const val VERSION_DATABASE = 1
+        private const val VERSION_DATABASE = 2
         private const val TABLE_NAME = "item"
 
         private const val COLUMN_ID = "id"
@@ -24,8 +24,8 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
         val createTable = ("CREATE TABLE ${TABLE_NAME} (" +
                 "${COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "${COLUMN_DESCRIPTION}description TEXT," +
-                "${COLUMN_QUANTITY}quantity INTEGER )" )
+                "${COLUMN_DESCRIPTION} TEXT," +
+                "${COLUMN_QUANTITY} INTEGER )" )
         db.execSQL(createTable)
     }
 
@@ -71,5 +71,25 @@ class DatabaseHelper(context : Context) : SQLiteOpenHelper(context, DATABASE_NAM
             db.close()
             return itemList
 
+    }
+
+    fun deleteItem(id : Int){
+        val db = this.writableDatabase
+        db.delete(TABLE_NAME,
+            " ${COLUMN_ID} = ? ", arrayOf(id.toString()))
+
+        db.close()
+
+    }
+
+    fun updateItem(item: Item){
+        val db = this.writableDatabase
+
+
+        val values = ContentValues().apply {
+            put(COLUMN_DESCRIPTION, item.description)
+            put(COLUMN_QUANTITY, item.quantity)
+        }
+        db.update(TABLE_NAME, values, " ${COLUMN_ID} = ?", arrayOf(item.id.toString()))
     }
 }

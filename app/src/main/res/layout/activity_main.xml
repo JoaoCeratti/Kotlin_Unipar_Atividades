@@ -1,8 +1,55 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center_horizontal" android:padding="16dp">
-    <TextView android:id="@+id/txtHeader" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginVertical="5dp" android:fontFamily="sans-serif-black" android:text="COMPRAS UNIPAR" android:textAlignment="center" android:textSize="20sp"/>
-    <EditText android:id="@+id/editTextItemDescription" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Descrição do Item" android:textColorHint="#666" android:padding="12dp" android:background="@drawable/edittext_background" android:layout_marginBottom="16dp"/>
-    <EditText android:id="@+id/editTextItemQuantity" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Quantidade do item" android:textColorHint="#666" android:padding="12dp" android:inputType="number" android:background="@drawable/edittext_background" android:layout_marginBottom="16dp"/>
-    <Button android:id="@+id/buttonAddItem" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Adicionar" android:backgroundTint="@color/colorPrimary" android:textColor="@android:color/white" android:layout_marginBottom="16dp"/>
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerViewItems" android:layout_width="match_parent" android:layout_height="match_parent" android:paddingBottom="16dp" android:scrollbars="vertical"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:fontFamily="sans-serif-black"
+        android:text="COMPRAS UNIPAR"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editTextItemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Descrição do Item"
+        android:padding="12dp"
+        android:textColorHint="#666" />
+
+    <EditText
+        android:id="@+id/editTextItemQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Quantidade do item"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textColorHint="#666" />
+
+    <Button
+        android:id="@+id/buttonAddItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Adicionar"
+        android:textColor="@android:color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        android:scrollbars="vertical" />
 </LinearLayout>
